@@ -16,6 +16,7 @@
     "postcss": "^8.4.38",
     "svelte": "^4.2.12",
     "svelte-check": "^3.6.7",
+    "svelte-headless-table": "^0.18.2",
     "tailwindcss": "^3.4.4",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2",
@@ -24,6 +25,7 @@
   "dependencies": {
     "bits-ui": "^0.21.10",
     "clsx": "^2.1.1",
+    "lucide-svelte": "^0.396.0",
     "tailwind-merge": "^2.3.0",
     "tailwind-variants": "^0.2.1"
   }
