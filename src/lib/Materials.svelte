@@ -15,7 +15,7 @@
     const getMaterials = async () => {
         const response = await api.get<Material[]>("/materials", {
             headers: {
-                Authorization: "loader",
+                Authorization: process.env.LOADER_PASS,
             },
         });
         materials = response.data;
@@ -30,7 +30,7 @@
             { material: newMaterial },
             {
                 headers: {
-                    Authorization: "admin",
+                    Authorization: process.env.ADMIN_PASS,
                 },
             },
         );

@@ -20,7 +20,7 @@
     const getClients = async () => {
         const response = await api.get<Client[]>("/clients", {
             headers: {
-                Authorization: "loader",
+                Authorization: process.env.LOADER_PASS,
             },
         });
 
@@ -40,7 +40,7 @@
             },
             {
                 headers: {
-                    Authorization: "admin",
+                    Authorization: process.env.ADMIN_PASS,
                 },
             },
         );
@@ -65,7 +65,7 @@
             },
             {
                 headers: {
-                    Authorization: "admin",
+                    Authorization: process.env.ADMIN_PASS,
                 },
             },
         );
