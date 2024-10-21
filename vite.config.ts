@@ -16,13 +16,13 @@ export default defineConfig({
         port: 3000,
         proxy: {
             "/api": {
-                target: process.env.BASE_URL ?? "http://localhost:8080/api",
+                target: "https://jazida-api-production.up.railway.app",
                 changeOrigin: true,
                 secure: false,
                 rewrite: (p) => p.replace(/^\/api/, '')
             },
             "/new-load-added": {
-                target: "ws://localhost:8080/new-load-added",
+                target: "https://jazida-api-production.up.railway.app/new-load-added",
                 changeOrigin: true,
                 secure: false,
                 rewrite: (p) => p.replace(/^\/new-load-added/, '')
