@@ -19,7 +19,7 @@
     const getLoads = async (): Promise<Load[]> => {
         const response = await api.get("/loads", {
             headers: {
-                Authorization: process.env.ADMIN_PASS,
+                Authorization: import.meta.env.VITE_ADMIN_PASS,
             },
         });
         return response.data.map((d: { payment_method: PaymentMethod }) => {
