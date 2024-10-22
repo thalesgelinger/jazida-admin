@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const apiUrl = import.meta.env?.VITE_API_URL ?? "https://localhost:8080"
+const baseUrl = import.meta.env.VITE_API_URL ?? "http://localhost:8080"
 export const api = axios.create({
-    baseURL: `${apiUrl}/api`
+    baseURL: `${baseUrl}/api`
 })
 
-export const ws = new WebSocket(`${apiUrl}/new-load-added`);
+export const ws = new WebSocket(`${baseUrl}/new-load-added`);

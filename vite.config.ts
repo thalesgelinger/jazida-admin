@@ -1,19 +1,33 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import path from "path";
 
-console.log({ API_URL: process.env.API_URL })
-
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-    process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
-
     return {
         plugins: [svelte()],
         resolve: {
             alias: {
                 $lib: path.resolve("./src/lib"),
             },
+        },
+        server: {
+            port: 3000,
+            proxy: {
+                "/api": {
+                    target: "http://localhost:8080",
+                    changeOrigin: true,
+                    secure: false,
+                    rewrite: (p) => p.replace(/^\/api/, '')
+                },
+                "/new-load-added": {
+                    target: `ws://localhost:8080/new-load-added`,
+                    changeOrigin: true,
+                    secure: false,
+                    ws: true,
+                    rewrite: (p) => p.replace(/^\/new-load-added/, '')
+                }
+            }
         }
     }
 })
