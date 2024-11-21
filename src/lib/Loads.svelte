@@ -5,6 +5,7 @@
     import { Button } from "./components/ui/button";
 
     type Load = {
+        created_at: string;
         id: string;
         client: string;
         plate: string;
@@ -68,6 +69,10 @@
                 return "Assinatura";
             case "paymentMethod":
                 return "Método de pagamento";
+            case "created_at":
+                return "Data";
+            default:
+                throw new Error("Unknow field");
         }
     }
 
@@ -86,6 +91,18 @@
 
         link.click();
     }
+
+    function formatDatetime(dtStr: string) {
+        const date = new Date(dtStr);
+
+        const hours = String(date.getUTCHours()).padStart(2, "0");
+        const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+        const day = String(date.getUTCDate()).padStart(2, "0");
+        const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+        const year = date.getUTCFullYear();
+
+        return `${hours}:${minutes} ${day}/${month}/${year}`;
+    }
 </script>
 
 <div class="rounded-md border">
@@ -97,6 +114,7 @@
         <Table.Header>
             <Table.Row>
                 <Table.Head>Id</Table.Head>
+                <Table.Head>Data</Table.Head>
                 <Table.Head>Cliente</Table.Head>
                 <Table.Head>Placa</Table.Head>
                 <Table.Head>Material</Table.Head>
@@ -109,6 +127,7 @@
             {#each loads as load}
                 <Table.Row>
                     <Table.Cell>{load.id}</Table.Cell>
+                    <Table.Cell>{formatDatetime(load.created_at)}</Table.Cell>
                     <Table.Cell>{load.client}</Table.Cell>
                     <Table.Cell>{load.plate}</Table.Cell>
                     <Table.Cell>{load.material}</Table.Cell>
