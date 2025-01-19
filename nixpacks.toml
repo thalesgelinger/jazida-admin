@@ -1,0 +1,12 @@
+[phases.setup]
+nixPkgs = ['...']
+
+[phases.install]
+cmd = "pnpm i --frozen-lockfile"
+
+[phases.build]
+cmds = ["pnpm build"]
+
+[start]
+cmd = "npx serve dist"
+dependsOn = ["build"]
